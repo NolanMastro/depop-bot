@@ -1,3 +1,7 @@
+[fork my repository](https://github.com/NolanMastro/depop-bot/fork)
+
+
+
 # depop-bot
 A fully automatic depop bot targeted to gain followers for any account. 
 
