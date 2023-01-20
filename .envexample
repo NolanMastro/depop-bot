@@ -1,2 +1,3 @@
 LOGIN = "email:password"
 SLEEP = 1 #make this number higher if you have a laggy computer/internet connection.
+WAITTIME = 21600 #make sure this number is pretty big, it is is seconds how long to wait for everyone you follow to follow you back.
