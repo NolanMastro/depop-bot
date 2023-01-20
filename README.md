@@ -2,7 +2,7 @@
 A fully automatic depop bot targeted to gain followers for any account. 
 
 
-Features
+# Features
 - Fully automatic
 - Max follower detection
 - Auto like posts
