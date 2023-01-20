@@ -1,0 +1,2 @@
+LOGIN = "email:password"
+SLEEP = 1 #make this number higher if you have a laggy computer/internet connection.
