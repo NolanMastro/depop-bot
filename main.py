@@ -127,6 +127,9 @@ def get_info(driver):
         global name
         elem = driver.find_element(By.CSS_SELECTOR, '#main > div:nth-child(1) > div.styles__UserInformationContainer-sc-__r941b9-0.bQEsqy > div > p')
         name = elem.text.strip()
+        #check if already following them
+        sleep(1)
+        driver.find_element(By.CSS_SELECTOR, '#main > div:nth-child(1) > div.styles__FollowsContainer-sc-__r941b9-6.cDHEId > div > button.sc-gFGZVQ.iiUPen.styles__SmallButton-sc-__sc-1ryjds-0.efhKVl').click()
     except:
         pass
     sleep(SLEEP_TIME)
