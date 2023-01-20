@@ -24,7 +24,7 @@ cd depop-bot
 pip install -r requirements.txt
 ``
 
-2. Configure the .env file.
+2. Configure the .env file. (see .envexample)
 3. Run the main.py file.
 
 ``
