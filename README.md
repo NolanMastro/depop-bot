@@ -40,6 +40,7 @@ python main.py
 
 
 I am not responsable for any bans, suspensions, or other actions taken on you or your accounts.
+
 I am not responsible for anything you do with this code.
 
 
