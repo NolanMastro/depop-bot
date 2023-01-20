@@ -3,10 +3,12 @@ A fully automatic depop bot targeted to gain followers for any account.
 
 
 # Features
-- Fully automatic
+- Fully automatic follower gain
 - Max follower detection
 - Auto like posts
 - Smart search
+- Auto unfollow
+
 
 # Installation
 
@@ -30,5 +32,14 @@ pip install -r requirements.txt
 ``
 python main.py
 ``
+
+# Recommendations/Other Requirements
+- Have Chrome installed.
+- Make sure you have signed into your account at least once before on chrome.
+- Turn 2fa off on depop.
+
+
+I am not responsable for any bans, suspensions, or other actions taken on you or your accounts.
+I am not responsible for anything you do with this code.
 
 
