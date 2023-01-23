@@ -183,7 +183,6 @@ def follow_them(driver, untilmax):
                     EC.element_to_be_clickable(elem)
                 )
             button = elem.text.strip()
-            print(button)
             if button == "Following":
                 count = count+1
                 continue
