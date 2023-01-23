@@ -17,6 +17,67 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
 
+
+#
+##
+#
+#
+##
+#
+#
+#
+#
+#
+##
+#
+#
+# CREATE LISTING TO SEE HOW WELL IT CAN GROW, ADD REPOST LISTING FUCCTION. User interface next?? ALSO ADD SOMETHING that checks how many people they follow compare dto had many followres they have and if its a lot than follow them.a    
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+##
+#
+#
+#
+##
+#
+
+###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 load_dotenv()
 
 if not os.environ["LOGIN"]:
@@ -83,6 +144,9 @@ def get_following(driver):
         print(f'{untilmax} followers until max is reached.')
     except:
         pass
+    if untilmax  <= 0:
+        print("Starting unfollow.")
+        unfollow(driver)
 
 
 def search_term(driver):
@@ -157,15 +221,15 @@ def follow_them(driver, untilmax):
             sold = 0
         sold = int(sold)
         if sold >= 500:
-            how_many_to_follow = theirfollowers/2
+            how_many_to_follow = untilmax/2
             print(f"User has more than 500 followers, following {how_many_to_follow} of them.")
         else:
-            how_many_to_follow = theirfollowers /4
+            how_many_to_follow = theirfollowers
     except:
         how_many_to_follow = 10
         pass
-    if how_many_to_follow > untilmax:
-        how_many_to_follow = untilmax /3
+    if how_many_to_follow > 7500:
+        how_many_to_follow = 10
     how_many_to_follow = round(how_many_to_follow)
     sleep(SLEEP_TIME)
     print(f"Found user, {name} starting following.")
@@ -217,19 +281,25 @@ def unfollow(driver):
         #get following
         elem = driver.find_element(By.CSS_SELECTOR, '#main > div:nth-child(1) > div.styles__FollowsContainer-sc-__r941b9-6.cDHEId > div > button:nth-child(2) > p.sc-jqUVSM.styles__StatsValue-sc-__sc-1hm9q0m-0.cZBwWq.iDhVgb')
         following = elem.text.strip()
-        following = int(following) /2
+        following = int(following) + 1
         sleep(2)
         #go to following
         driver.find_element(By.CSS_SELECTOR, '#main > div:nth-child(1) > div.styles__FollowsContainer-sc-__r941b9-6.cDHEId > div > button:nth-child(2)').click()
     except:
         pass
     print(f"Sleeping to allow time for people to follow back, sleeping for {WAITTIME} seconds.")
-    sleep(WAITTIME)
+    sleepcount = 1
+    while sleepcount < WAITTIME:
+        clear = lambda: os.system('cls')
+        clear()
+        print(f"Sleeping: {sleepcount}/{WAITTIME}")
+        sleepcount = sleepcount+1
+        sleep(1)
     counter = 1
     print(f'Unfollowing {round(following)} followers.')
     try:
         while counter < following:
-            driver.find_element(By.CSS_SELECTOR, f'#following-tab > div > div > div:nth-child({counter}) > button').click()
+            driver.find_element(By.CSS_SELECTOR, f'#following-tab > div > div > div:nth-child({counter}) > button').click() 
             counter = counter +1
             clear = lambda: os.system('cls')
             clear()
