@@ -164,6 +164,9 @@ def follow_them(driver, untilmax):
     except:
         how_many_to_follow = 10
         pass
+    if how_many_to_follow > untilmax:
+        how_many_to_follow = untilmax /3
+    how_many_to_follow = round(how_many_to_follow)
     sleep(SLEEP_TIME)
     print(f"Found user, {name} starting following.")
     #follow their followers
@@ -179,13 +182,19 @@ def follow_them(driver, untilmax):
             WebDriverWait(driver, 10).until(
                     EC.element_to_be_clickable(elem)
                 )
-            elem.click()
-            count = count+1
-            untilmax = untilmax-1
-            clear = lambda: os.system('cls')
-            clear()
-            print(f"Followed {count}/{how_many_to_follow} of {name}'s followers.")
-            sleep(0.5)
+            button = elem.text.strip()
+            print(button)
+            if button == "Following":
+                count = count+1
+                continue
+            else:   
+                elem.click()
+                count = count+1
+                untilmax = untilmax-1
+                clear = lambda: os.system('cls')
+                clear()
+                print(f"Followed {count}/{how_many_to_follow} of {name}'s followers.")
+                sleep(0.5)
         except:
             pass
     print(f"Still {untilmax} follows left until unfollow starts. ")
