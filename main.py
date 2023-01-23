@@ -16,68 +16,6 @@ from dotenv import load_dotenv
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
-
-
-#
-##
-#
-#
-##
-#
-#
-#
-#
-#
-##
-#
-#
-# CREATE LISTING TO SEE HOW WELL IT CAN GROW, ADD REPOST LISTING FUCCTION. User interface next?? ALSO ADD SOMETHING that checks how many people they follow compare dto had many followres they have and if its a lot than follow them.a    
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-##
-#
-#
-#
-##
-#
-
-###
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 load_dotenv()
 
 if not os.environ["LOGIN"]:
