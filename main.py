@@ -36,7 +36,7 @@ else:
 
 
 DESCRIBING_WORDS = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'black', 'white', 'vintage', 'used', 'grey', 'discount', 'brown']
-SEARCHTERMS = ['stussy', 'nike', 'hoodie', 'rick owens', 'bape', 'dunks', 'pants', 'cargos', 'crewnecks', 'sherpa', 'puffer', 'north face', 'affliction', 'carhartt', 'dickies', 'patagonia', 'converse', 'blazers', 'nike sweatshirt', 'stussy shirt', 'vest', 'golf']
+SEARCHTERMS = ['stussy', 'fleece', 'obey', 'nike', 'hoodie', 'rick owens', 'bape', 'dunks', 'pants', 'cargos', 'crewnecks', 'sherpa', 'puffer', 'north face', 'affliction', 'carhartt', 'dickies', 'patagonia', 'converse', 'blazers', 'nike sweatshirt', 'stussy shirt', 'vest', 'golf']
 
 
 def login(EMAIL, PASSWORD, driver):
@@ -145,35 +145,18 @@ def get_their_info(driver):
         theirfollowers = elem.text.strip().replace('K', '000')
         theirfollowers = int(theirfollowers)
     except:
-        theirfollowers = 10
+        theirfollowers = 0
         pass
     sleep(SLEEP_TIME)
     
 
 def follow_them(driver, untilmax):
-    try:
-        #get their sold
-        elem = driver.find_element(By.CSS_SELECTOR, '#main > div:nth-child(1) > div.styles__UserInformationContainer-sc-__r941b9-0.bQEsqy > div > div.TrustSignalsstyles__Signals-sc-__y0jgqp-0.jDoDOD > div:nth-child(1) > p')
-        sold = elem.text.strip().replace(' sold', '')
-        if elem == "Active this week" or "Active today":
-            sold = 0
-        sold = int(sold)
-        if sold >= 500:
-            how_many_to_follow = untilmax/2
-            print(f"User has more than 500 followers, following {how_many_to_follow} of them.")
-        else:
-            how_many_to_follow = theirfollowers
-    except:
-        how_many_to_follow = 10
-        pass
-    if how_many_to_follow > 7500:
-        how_many_to_follow = 10
-    how_many_to_follow = round(how_many_to_follow)
-    sleep(SLEEP_TIME)
     print(f"Found user, {name} starting following.")
     #follow their followers
-    how_many_to_follow = int(how_many_to_follow)
-    how_many_to_follow = round(how_many_to_follow)
+    if theirfollowers < 20:
+        how_many_to_follow = theirfollowers
+    else:
+        how_many_to_follow = 20
     driver.find_element(By.XPATH, '/html/body/div/div/main/div[1]/div[2]/div/button[1]').click()
     sleep(random.randint(2,3))
     count = 1
@@ -237,14 +220,19 @@ def unfollow(driver):
     print(f'Unfollowing {round(following)} followers.')
     try:
         while counter < following:
-            driver.find_element(By.CSS_SELECTOR, f'#following-tab > div > div > div:nth-child({counter}) > button').click() 
+            elem = driver.find_element(By.CSS_SELECTOR, f'#following-tab > div > div > div:nth-child({counter}) > button')
+            WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable(elem)
+                )
+            elem.click()
             counter = counter +1
             clear = lambda: os.system('cls')
             clear()
             print(f"Unfollowed {counter}/{round(following)}.")
-            sleep(0.7)
+            sleep(0.3)
     except:
         pass
+        
 
     try:
         driver.find_element(By.CSS_SELECTOR, '#modal__headerWrapper > button > div').click()
